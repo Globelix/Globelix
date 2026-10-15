@@ -1,6 +1,8 @@
 # Globelix
 
-[![WebGPU](https://img.shields.io/badge/render-WebGPU%20native-blueviolet?style=flat-square)](https://www.w3.org/TR/webgpu/) [![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?style=flat-square)](https://www.typescriptlang.org/) [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![WebGPU](https://img.shields.io/badge/render-WebGPU%20native-blueviolet?style=flat-square)](https://www.w3.org/TR/webgpu/) [![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6?style=flat-square)](https://www.typescriptlang.org/) [![License](https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square)](LICENSE)
+
+[💻 GitHub](https://github.com/Globelix/Globelix)
 
 Globelix 是新一代**基于 WebGPU 原生构建的超现实三维引擎**，集**逼真实时绘制引擎**、**时空物理仿真引擎**与**三维 GIS 引擎**于一体。
 
@@ -65,38 +67,27 @@ Globelix 不是 WebGL 管线上的移植或兼容层，而是从资源模型、�
 ## 🧩 架构
 
 ```mermaid
-%%{init: {"flowchart": {"subGraphTitleMargin": {"top": 8, "bottom": 16}}}}%%
 flowchart TB
-    subgraph app["应用层"]
+    app["应用层：数字孪生 / 智慧城市 / 仿真推演 / 行星可视化"]
+
+    subgraph engines["三大引擎切面"]
         direction LR
-        twin["数字孪生"]
-        city["智慧城市"]
-        sim["仿真推演"]
-        planet["行星可视化"]
+        rendering["逼真实时绘制引擎"]
+        physics["时空物理仿真引擎"]
+        gis["三维 GIS 引擎"]
     end
 
-    subgraph engine["Globelix 引擎"]
-        direction TB
-
-        subgraph engines["三大引擎切面"]
-            direction LR
-            render["逼真实时绘制引擎"]
-            physics["时空物理仿真引擎"]
-            gis["三维 GIS 引擎"]
-        end
-
-        subgraph core["统一场景与着色管线"]
-            direction LR
-            scene["统一场景图"]
-            shading["统一着色管线"]
-            lod["连续 LOD 调度"]
-            time["统一时间轴"]
-        end
+    subgraph core["统一场景与着色管线"]
+        direction LR
+        scene["统一场景图"]
+        shading["统一着色管线"]
+        lod["连续 LOD 调度"]
+        time["统一时间轴"]
     end
 
     subgraph gpu["WebGPU 原生层"]
         direction LR
-        graph["Render Graph"]
+        rgraph["Render Graph"]
         compute["Compute Pipeline"]
         res["显式资源与管线"]
     end
@@ -109,6 +100,13 @@ flowchart TB
 ---
 
 ## 🚀 快速开始
+
+获取源码：
+
+```bash
+git clone https://github.com/Globelix/Globelix.git
+cd Globelix
+```
 
 Globelix 处于早期研发阶段，首个预览版发布前，本节将提供安装方式、最小可运行示例与在线示例站。
 
@@ -147,11 +145,16 @@ Globelix 站在 Web 图形与地理空间开源生态的肩膀上，特别致谢
 
 - [WebGPU](https://www.w3.org/TR/webgpu/) 规范与 Dawn / wgpu 等实现，让浏览器第一次拥有真正的现代图形与计算能力
 - [Three.js](https://github.com/mrdoob/three.js) 等 Web 3D 项目十余年积累的工程范式与生态经验
+- [CesiumJS](https://github.com/CesiumGS/cesium) —— 三维地理空间引擎的长期标杆，其椭球与时空参考框架、地形与影像调度、全球尺度 LOD 与精度处理的工程实践，为三维 GIS 引擎设计提供了重要参照
 - [3D Tiles](https://github.com/CesiumGS/3d-tiles)、[Quantized Mesh](https://github.com/CesiumGS/quantized-mesh) 等开放地理数据规范
 - 所有推动 Web 实时图形与开源地理空间技术发展的贡献者们 ❤️
 
 ---
 
+## 🤝 参与
+
+Globelix 处于早期研发阶段，欢迎通过 [Issue](https://github.com/Globelix/Globelix/issues) 反馈想法与问题，或通过 Pull Request 参与贡献。
+
 ## ⚖️ License
 
-[Apache-2.0](./LICENSE)。Globelix 可用于商业和非商业项目。
+[Apache License 2.0](./LICENSE)。Globelix 可用于商业和非商业项目；再分发时需保留许可声明与变更说明，许可同时包含明确的专利授权与责任限制。
